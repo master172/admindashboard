@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=3 uid="uid://c1knwdjfj4q7t"]
+
+[ext_resource type="Theme" uid="uid://c8wib8exwpaas" path="res://Resources/MainTheme.tres" id="1_4bj0i"]
+[ext_resource type="Script" uid="uid://crgwqcblxc6tv" path="res://src/Main/manage_hosts.gd" id="2_mnmif"]
+[ext_resource type="Texture2D" uid="uid://3wbfrdbf88e6" path="res://assets/Icons/Back.svg" id="3_mnmif"]
+[ext_resource type="PackedScene" uid="uid://351f6j6go1i2" path="res://src/UIComponents/BaseButtonComponent.tscn" id="4_n1q0f"]
+[ext_resource type="Texture2D" uid="uid://cc2ad2aqi5wl0" path="res://assets/Icons/people.svg" id="5_xdh8r"]
+[ext_resource type="Texture2D" uid="uid://bhj3d3hlattle" path="res://assets/Icons/add.svg" id="6_mnmif"]
+
+[node name="ManageEvents" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_4bj0i")
+script = ExtResource("2_mnmif")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15, 0.15, 0.15, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Back" type="Button" parent="VBoxContainer/Header/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = " Back "
+icon = ExtResource("3_mnmif")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Items" type="FlowContainer" parent="VBoxContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+
+[node name="CreationButton" parent="VBoxContainer/MarginContainer/ScrollContainer/Items" instance=ExtResource("4_n1q0f")]
+layout_mode = 2
+Icon = ExtResource("6_mnmif")
+Text = "Create New"
+
+[node name="EventButton" parent="VBoxContainer/MarginContainer/ScrollContainer/Items" instance=ExtResource("4_n1q0f")]
+layout_mode = 2
+Icon = ExtResource("5_xdh8r")
+Text = "Host 1"
+
+[connection signal="pressed" from="VBoxContainer/Header/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/ScrollContainer/Items/CreationButton" to="." method="_on_creation_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/ScrollContainer/Items/EventButton" to="." method="_on_event_button_pressed"]

@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4tiqh1k04mrb"]
+
+[ext_resource type="Script" uid="uid://dmohbtysfpwxv" path="res://src/UIComponents/base_button_component.gd" id="1_nut5f"]
+[ext_resource type="Texture2D" uid="uid://2rowgovvg0sm" path="res://assets/Icons/item.svg" id="2_odrev"]
+[ext_resource type="Texture2D" uid="uid://18r6uw5d6obc" path="res://assets/Icons/Manage.svg" id="3_a7gpc"]
+
+[node name="BaseButtonComponent" type="Button"]
+custom_minimum_size = Vector2(192, 192)
+icon_alignment = 1
+script = ExtResource("1_nut5f")
+Icon = ExtResource("2_odrev")
+Text = "Event 1"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_a7gpc")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Manage Events"
+horizontal_alignment = 1

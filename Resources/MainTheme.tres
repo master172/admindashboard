@@ -1,0 +1,100 @@
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://c8wib8exwpaas"]
+
+[ext_resource type="FontFile" uid="uid://b6pbhvdgvsn2" path="res://assets/Fonts/Fira_Code/static/FiraCode-Regular.ttf" id="1_f5rfs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f5rfs"]
+bg_color = Color(0.217, 0.25575, 0.31, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.60444, 0.5548, 0.73, 1)
+border_blend = true
+corner_radius_top_left = 48
+corner_radius_top_right = 48
+corner_radius_bottom_right = 48
+corner_radius_bottom_left = 48
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f5rfs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lwoop"]
+bg_color = Color(0.17, 0.17, 0.17, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.167167, 0, 0.59, 1)
+border_blend = true
+corner_radius_top_left = 48
+corner_radius_top_right = 48
+corner_radius_bottom_right = 48
+corner_radius_bottom_left = 48
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bs5wg"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.202886, 0, 0.730469, 1)
+border_blend = true
+corner_radius_top_left = 48
+corner_radius_top_right = 48
+corner_radius_bottom_right = 48
+corner_radius_bottom_left = 48
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bcdm8"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.147333, 0, 0.52, 1)
+border_blend = true
+corner_radius_top_left = 48
+corner_radius_top_right = 48
+corner_radius_bottom_right = 48
+corner_radius_bottom_left = 48
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4swcv"]
+bg_color = Color(0.147333, 0, 0.52, 0.631373)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tohqo"]
+bg_color = Color(0.3125, 0.3125, 0.3125, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bs5wg"]
+
+[resource]
+Button/fonts/font = ExtResource("1_f5rfs")
+Button/styles/disabled = SubResource("StyleBoxFlat_f5rfs")
+Button/styles/focus = SubResource("StyleBoxEmpty_f5rfs")
+Button/styles/hover = SubResource("StyleBoxFlat_lwoop")
+Button/styles/normal = SubResource("StyleBoxFlat_bs5wg")
+Button/styles/pressed = SubResource("StyleBoxFlat_bcdm8")
+Label/colors/font_color = Color(0.878431, 0.878431, 0.878431, 1)
+Label/colors/font_outline_color = Color(0, 0, 0, 1)
+Label/constants/outline_size = 4
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_f5rfs")
+LineEdit/colors/font_placeholder_color = Color(0.878431, 0.878431, 0.878431, 0.784314)
+LineEdit/constants/outline_size = 4
+LineEdit/fonts/font = ExtResource("1_f5rfs")
+Panel/styles/panel = SubResource("StyleBoxFlat_4swcv")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_tohqo")
+TextEdit/colors/font_placeholder_color = Color(0.88, 0.88, 0.88, 0.784314)
+TextEdit/constants/outline_size = 4
+TextEdit/fonts/font = ExtResource("1_f5rfs")
+VSeparator/styles/separator = SubResource("StyleBoxEmpty_bs5wg")

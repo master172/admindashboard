@@ -1,0 +1,99 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqper6vag3dyr"]
+
+[ext_resource type="Script" uid="uid://ruhbnawyynff" path="res://src/UIComponents/participant_entry.gd" id="1_p81ud"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_28yk6"]
+bg_color = Color(0.160156, 0.160156, 0.160156, 1)
+border_width_left = 5
+border_width_top = 1
+border_width_right = 5
+border_width_bottom = 1
+border_color = Color(0.160156, 0.160156, 0.160156, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="ParticipantEntry" type="PanelContainer"]
+size_flags_horizontal = 3
+script = ExtResource("1_p81ud")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 2
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 2
+
+[node name="Participants" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Participants"]
+layout_mode = 2
+text = "Participant1"
+
+[node name="VboxContainer" type="VBoxContainer" parent="MarginContainer/Participants"]
+layout_mode = 2
+
+[node name="Name" type="HBoxContainer" parent="MarginContainer/Participants/VboxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Entry" type="PanelContainer" parent="MarginContainer/Participants/VboxContainer/Name"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_28yk6")
+
+[node name="Title" type="Label" parent="MarginContainer/Participants/VboxContainer/Name/Entry"]
+layout_mode = 2
+text = "Name:"
+
+[node name="Data" type="PanelContainer" parent="MarginContainer/Participants/VboxContainer/Name"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28yk6")
+
+[node name="name_label" type="Label" parent="MarginContainer/Participants/VboxContainer/Name/Data"]
+layout_mode = 2
+text = "Sumant"
+
+[node name="PhoneNo" type="HBoxContainer" parent="MarginContainer/Participants/VboxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Entry" type="PanelContainer" parent="MarginContainer/Participants/VboxContainer/PhoneNo"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_28yk6")
+
+[node name="Title" type="Label" parent="MarginContainer/Participants/VboxContainer/PhoneNo/Entry"]
+layout_mode = 2
+text = "Phone No:"
+
+[node name="Data" type="PanelContainer" parent="MarginContainer/Participants/VboxContainer/PhoneNo"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28yk6")
+
+[node name="phone_no" type="Label" parent="MarginContainer/Participants/VboxContainer/PhoneNo/Data"]
+layout_mode = 2
+text = "Sumant"
+
+[node name="EmailId" type="HBoxContainer" parent="MarginContainer/Participants/VboxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Entry" type="PanelContainer" parent="MarginContainer/Participants/VboxContainer/EmailId"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_28yk6")
+
+[node name="Title" type="Label" parent="MarginContainer/Participants/VboxContainer/EmailId/Entry"]
+layout_mode = 2
+text = "Email Id:"
+
+[node name="Data" type="PanelContainer" parent="MarginContainer/Participants/VboxContainer/EmailId"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28yk6")
+
+[node name="email_label" type="Label" parent="MarginContainer/Participants/VboxContainer/EmailId/Data"]
+layout_mode = 2
+text = "Sumant"

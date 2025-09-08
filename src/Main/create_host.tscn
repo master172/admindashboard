@@ -1,0 +1,174 @@
+[gd_scene load_steps=5 format=3 uid="uid://r3jpxhgb5mmx"]
+
+[ext_resource type="Theme" uid="uid://c8wib8exwpaas" path="res://Resources/MainTheme.tres" id="1_ddwfa"]
+[ext_resource type="Script" uid="uid://blf1tjb5tfab1" path="res://src/Main/create_host.gd" id="2_pyhpv"]
+[ext_resource type="Texture2D" uid="uid://3wbfrdbf88e6" path="res://assets/Icons/Back.svg" id="3_ureog"]
+[ext_resource type="Script" uid="uid://vlcg0jnerqik" path="res://src/Main/json_loader.gd" id="4_pyhpv"]
+
+[node name="CreateHost" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ddwfa")
+script = ExtResource("2_pyhpv")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15, 0.15, 0.15, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="Panel" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Back" type="Button" parent="VBoxContainer/Header/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = " Back "
+icon = ExtResource("3_ureog")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="FormContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="club_name" type="PanelContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/club_name"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/club_name/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/club_name/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Club Name : "
+
+[node name="club_name" type="OptionButton" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/club_name/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 6
+popup/item_0/text = "AICUF"
+popup/item_0/id = 0
+popup/item_1/text = "Art Club"
+popup/item_1/id = 1
+popup/item_2/text = "Music Club"
+popup/item_2/id = 2
+popup/item_3/text = "Dance Club"
+popup/item_3/id = 3
+popup/item_4/text = "Dramatics & Press Club"
+popup/item_4/id = 4
+popup/item_5/text = "Movie Club"
+popup/item_5/id = 5
+
+[node name="LoginId" type="PanelContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/LoginId"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/LoginId/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/LoginId/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Login ID  : "
+
+[node name="login_id" type="LineEdit" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/LoginId/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="EmailID" type="PanelContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/EmailID"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/EmailID/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/EmailID/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Email ID  : "
+horizontal_alignment = 1
+
+[node name="email_id" type="LineEdit" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/EmailID/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Password" type="PanelContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/Password"]
+layout_mode = 2
+theme_override_constants/margin_left = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/Password/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/Password/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Password  : "
+horizontal_alignment = 1
+
+[node name="password" type="LineEdit" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/Password/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Save" type="Button" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Save"
+
+[node name="JsonLoader" type="Node" parent="."]
+script = ExtResource("4_pyhpv")
+
+[connection signal="pressed" from="VBoxContainer/Header/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="item_selected" from="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/club_name/MarginContainer/HBoxContainer/club_name" to="." method="_on_club_name_item_selected"]
+[connection signal="text_submitted" from="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/LoginId/MarginContainer/HBoxContainer/login_id" to="." method="_on_login_id_text_submitted"]
+[connection signal="text_submitted" from="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/EmailID/MarginContainer/HBoxContainer/email_id" to="." method="_on_email_id_text_submitted"]
+[connection signal="text_submitted" from="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/Password/MarginContainer/HBoxContainer/password" to="." method="_on_password_text_submitted"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/Save" to="." method="_on_save_pressed"]

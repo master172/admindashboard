@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dap6ysjaq0jel"]
+
+[ext_resource type="Script" uid="uid://6g28kvd213yq" path="res://src/UIComponents/rule.gd" id="1_njtug"]
+[ext_resource type="Texture2D" uid="uid://u1sq87auj7bj" path="res://assets/Icons/close.svg" id="1_o31r2"]
+
+[node name="Rule" type="PanelContainer"]
+script = ExtResource("1_njtug")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("1_o31r2")
+
+[node name="LineEdit" type="LineEdit" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="text_submitted" from="HBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
