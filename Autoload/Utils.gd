@@ -3,6 +3,7 @@ extends Node
 var register_form:Queue = Queue.new()
 var selected_event:Queue = Queue.new()
 var selected_club:Queue = Queue.new()
+var selected_host:Queue = Queue.new()
 
 func is_valid_email_id(email:String)->bool:
 	var regex := RegEx.new()

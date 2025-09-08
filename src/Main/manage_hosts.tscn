@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://c1knwdjfj4q7t"]
+[gd_scene load_steps=6 format=3 uid="uid://c1knwdjfj4q7t"]
 
 [ext_resource type="Theme" uid="uid://c8wib8exwpaas" path="res://Resources/MainTheme.tres" id="1_4bj0i"]
 [ext_resource type="Script" uid="uid://crgwqcblxc6tv" path="res://src/Main/manage_hosts.gd" id="2_mnmif"]
 [ext_resource type="Texture2D" uid="uid://3wbfrdbf88e6" path="res://assets/Icons/Back.svg" id="3_mnmif"]
 [ext_resource type="PackedScene" uid="uid://351f6j6go1i2" path="res://src/UIComponents/BaseButtonComponent.tscn" id="4_n1q0f"]
-[ext_resource type="Texture2D" uid="uid://cc2ad2aqi5wl0" path="res://assets/Icons/people.svg" id="5_xdh8r"]
 [ext_resource type="Texture2D" uid="uid://bhj3d3hlattle" path="res://assets/Icons/add.svg" id="6_mnmif"]
 
 [node name="ManageEvents" type="Control"]
@@ -79,11 +78,5 @@ layout_mode = 2
 Icon = ExtResource("6_mnmif")
 Text = "Create New"
 
-[node name="EventButton" parent="VBoxContainer/MarginContainer/ScrollContainer/Items" instance=ExtResource("4_n1q0f")]
-layout_mode = 2
-Icon = ExtResource("5_xdh8r")
-Text = "Host 1"
-
 [connection signal="pressed" from="VBoxContainer/Header/VBoxContainer/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/ScrollContainer/Items/CreationButton" to="." method="_on_creation_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/ScrollContainer/Items/EventButton" to="." method="_on_event_button_pressed"]

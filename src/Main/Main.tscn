@@ -68,6 +68,7 @@ columns = 2
 
 [node name="ManageEvents" parent="MainContainer/OptionsContainer/GridContainer" instance=ExtResource("4_nxavr")]
 layout_mode = 2
+Text = "Maage Hosts"
 
 [node name="RegistrationsButton" parent="MainContainer/OptionsContainer/GridContainer" instance=ExtResource("4_nxavr")]
 layout_mode = 2

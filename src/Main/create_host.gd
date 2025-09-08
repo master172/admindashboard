@@ -22,20 +22,20 @@ const CLUB_FILE = "res://Resources/club_names.json"
 	password:"password",
 }
 
-var entry_number:int = 1
-
 var data:Dictionary = {
-	"entry "+str(entry_number):{
-		"club_name":"",
-		"login_id":"",
-		"email_id":"",
-		"password":"",
-	}
+	"club_name":"",
+	"login_id":"",
+	"email_id":"",
+	"password":"",
 }
 
 func _ready() -> void:
-	var club_names = json_loader.load_json_as_array(CLUB_FILE)
-	for i in club_names:
+	if Utils.selected_host.is_empty() == false:
+		var selected_club = Utils.selected_host.get_front()
+		get_host(selected_club)
+
+	var club_names = json_loader.load_json_as_dict(CLUB_FILE)
+	for i in club_names.keys():
 		club_name.add_item(i)
 		
 func _on_back_pressed() -> void:
@@ -49,7 +49,7 @@ func _on_login_id_text_submitted(new_text: String) -> void:
 		login_id.text = ""
 		login_id.release_focus()
 		return
-	data["entry "+str(entry_number)]["login_id"] = new_text
+	data["login_id"] = new_text
 	login_id.release_focus()
 
 
@@ -59,7 +59,7 @@ func _on_email_id_text_submitted(new_text:String) -> void:
 		email_id.text = ""
 		email_id.release_focus()
 		return
-	data["entry "+str(entry_number)]["email_id"] = new_text
+	data["email_id"] = new_text
 	email_id.release_focus()
 
 
@@ -69,18 +69,59 @@ func _on_password_text_submitted(new_text: String) -> void:
 		password.text = ""
 		password.release_focus()
 		return
-	data["entry "+str(entry_number)]["password"] = new_text
+	data["password"] = new_text
 	password.release_focus()
 
 
 func _on_save_pressed() -> void:
 	for i:Node in fields:
-		data["entry "+str(entry_number)][field_map[i]] = i.text if Utils.has_property(i,"text") else i.get_item_text(i.selected)
+		data[field_map[i]] = i.text if Utils.has_property(i,"text") else i.get_item_text(i.selected)
 	
-	print("data")
+	create_host(data)
 	
-	_on_back_pressed()
 
 
 func _on_club_name_item_selected(index: int) -> void:
-	data["entry "+str(entry_number)]["club_name"] = club_name.get_item_text(index)
+	data["club_name"] = club_name.get_item_text(index)
+
+func create_host(request_refrence:Dictionary):
+	var http :HTTPRequest = HTTPRequest.new()
+	add_child(http)
+	http.request_completed.connect(self._on_hosts_completed)
+	http.request_completed.connect(http.queue_free.unbind(4))
+	var header = ["Content-Type: application/json"]
+	var body:String = JSON.stringify(request_refrence)
+	var err = http.request("http://127.0.0.1:8000/create",header,HTTPClient.METHOD_POST,body)
+	if err != OK:
+		push_error("http request error: ",err)
+	
+func _on_hosts_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+	if response_code == 200:
+		_on_back_pressed()
+	else:
+		push_error("request failed response code: ",response_code)
+
+func get_host(user_id:String):
+	var http :HTTPRequest = HTTPRequest.new()
+	add_child(http)
+	http.request_completed.connect(self._on_host_completed)
+	http.request_completed.connect(http.queue_free.unbind(4))
+	var header = ["Content-Type: application/json"]
+	var body:String = JSON.stringify({"user_id":user_id})
+	var err = http.request("http://127.0.0.1:8000/host",header,HTTPClient.METHOD_GET,body)
+	if err != OK:
+		push_error("http request error: ",err)
+	
+func _on_host_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+	if response_code == 200:
+		var data :Dictionary = JSON.parse_string(body.get_string_from_utf8())
+		set_values(data)
+	else:
+		push_error("request failed response code: ",response_code)
+
+func set_values(data:Dictionary)->void:
+	var club_names = json_loader.load_json_as_dict(CLUB_FILE)
+	club_name.select(club_names[data["club_name"]])
+	login_id.text = data["login_id"]
+	email_id.text = data["email_id"]
+	password.text = data["password"]
