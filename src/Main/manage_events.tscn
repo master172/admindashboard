@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://drl86cnglp48h"]
+[gd_scene load_steps=4 format=3 uid="uid://drl86cnglp48h"]
 
 [ext_resource type="Theme" uid="uid://c8wib8exwpaas" path="res://Resources/MainTheme.tres" id="1_j64jk"]
 [ext_resource type="Script" uid="uid://d0dtuiyfiraa5" path="res://src/Main/manage_events.gd" id="2_6n61c"]
 [ext_resource type="Texture2D" uid="uid://3wbfrdbf88e6" path="res://assets/Icons/Back.svg" id="2_wfvy1"]
-[ext_resource type="PackedScene" uid="uid://351f6j6go1i2" path="res://src/UIComponents/BaseButtonComponent.tscn" id="4_wgbqs"]
 
 [node name="ManageEvents" type="Control"]
 layout_mode = 3
@@ -72,9 +71,4 @@ size_flags_vertical = 3
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 
-[node name="EventButton" parent="VBoxContainer/MarginContainer/ScrollContainer/Items" instance=ExtResource("4_wgbqs")]
-layout_mode = 2
-Text = "Event 1"
-
 [connection signal="pressed" from="VBoxContainer/Header/VBoxContainer/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/ScrollContainer/Items/EventButton" to="." method="_on_event_button_pressed"]

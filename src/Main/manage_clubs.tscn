@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://tqk4hylo4jw5"]
+[gd_scene load_steps=4 format=3 uid="uid://tqk4hylo4jw5"]
 
 [ext_resource type="Theme" uid="uid://c8wib8exwpaas" path="res://Resources/MainTheme.tres" id="1_ncn25"]
 [ext_resource type="Script" uid="uid://dkp5u4wx8qsu7" path="res://src/Main/manage_clubs.gd" id="2_iglmh"]
 [ext_resource type="Texture2D" uid="uid://3wbfrdbf88e6" path="res://assets/Icons/Back.svg" id="3_uywfr"]
-[ext_resource type="PackedScene" uid="uid://c4tiqh1k04mrb" path="res://src/UIComponents/RegistrationButtonComponent.tscn" id="4_edw67"]
-[ext_resource type="Texture2D" uid="uid://ng7jvejyjetb" path="res://assets/Icons/groups.svg" id="5_iglmh"]
 
 [node name="ManageClubs" type="Control"]
 layout_mode = 3
@@ -73,10 +71,4 @@ size_flags_vertical = 3
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 
-[node name="Registration1" parent="VBoxContainer/MarginContainer/ScrollContainer/Items" instance=ExtResource("4_edw67")]
-layout_mode = 2
-Icon = ExtResource("5_iglmh")
-Text = "Club 1"
-
 [connection signal="pressed" from="VBoxContainer/Header/VBoxContainer/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="VBoxContainer/MarginContainer/ScrollContainer/Items/Registration1" to="." method="_on_registration_1_pressed"]
