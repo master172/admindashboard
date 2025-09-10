@@ -29,7 +29,6 @@ func _on_club_completed(result: int, response_code: int, headers: PackedStringAr
 	if response_code == 200:
 		var data:Array = JSON.parse_string(body.get_string_from_utf8())
 		if data != []:
-			print(data)
 			add_club_buttons(data)
 	else:
 		push_error("request failed response code: ",response_code)

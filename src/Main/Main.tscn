@@ -47,7 +47,7 @@ grow_vertical = 2
 [node name="HeaderTitle" type="Label" parent="MainContainer/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Club Dashboard"
+text = "Admin Dashboard"
 horizontal_alignment = 1
 vertical_alignment = 1
 

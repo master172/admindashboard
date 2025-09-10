@@ -1,10 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://s7xjmryabp5d"]
+[gd_scene load_steps=4 format=3 uid="uid://s7xjmryabp5d"]
 
 [ext_resource type="Theme" uid="uid://c8wib8exwpaas" path="res://Resources/MainTheme.tres" id="1_f35hx"]
 [ext_resource type="Script" uid="uid://cggba23iv77br" path="res://src/Main/registrations.gd" id="2_28yk6"]
 [ext_resource type="Texture2D" uid="uid://3wbfrdbf88e6" path="res://assets/Icons/Back.svg" id="2_v2a6t"]
-[ext_resource type="PackedScene" uid="uid://bckgms8xla51m" path="res://src/UIComponents/Induvidualdelegate.tscn" id="4_gtp1t"]
-[ext_resource type="PackedScene" uid="uid://brk628uxfpj03" path="res://src/UIComponents/InstitutionDelegate.tscn" id="5_5h1ic"]
 
 [node name="Registrations" type="Control"]
 layout_mode = 3
@@ -84,14 +82,11 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/TabContainer/Induvidual/FormContainer"]
+[node name="individual" type="VBoxContainer" parent="VBoxContainer/MarginContainer/TabContainer/Induvidual/FormContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 18
-
-[node name="Delegate" parent="VBoxContainer/MarginContainer/TabContainer/Induvidual/FormContainer/VBoxContainer" instance=ExtResource("4_gtp1t")]
-layout_mode = 2
 
 [node name="Institution" type="Control" parent="VBoxContainer/MarginContainer/TabContainer"]
 visible = false
@@ -110,12 +105,9 @@ offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/TabContainer/Institution/FormContainer"]
+[node name="institution" type="VBoxContainer" parent="VBoxContainer/MarginContainer/TabContainer/Institution/FormContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="Delegate" parent="VBoxContainer/MarginContainer/TabContainer/Institution/FormContainer/VBoxContainer" instance=ExtResource("5_5h1ic")]
-layout_mode = 2
 
 [connection signal="pressed" from="VBoxContainer/Header/VBoxContainer/Back" to="." method="_on_back_pressed"]
