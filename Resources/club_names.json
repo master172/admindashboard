@@ -11,7 +11,7 @@
 	"Kannada Sangha": 9,
 	"Wall Magzine Club": 10,
 	"Commerce Association": 11,
-	"Computer Science Club": 12,
+	"Computer Science Association": 12,
 	"Eco Club": 13,
 	"Electronics Club": 14,
 	"Maths Club": 15,
@@ -22,5 +22,6 @@
 	"Photography Club": 20,
 	"Quiz Club": 21,
 	"Social Science Association": 22,
-	"Electoral Literacy Club": 23
+	"Electoral Literacy Club": 23,
+	"Exclusives":24
 }

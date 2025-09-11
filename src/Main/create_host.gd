@@ -23,20 +23,25 @@ const CLUB_FILE = "res://Resources/club_names.json"
 }
 
 var data:Dictionary = {
+	"user_uid":"",
 	"club_name":"",
 	"login_id":"",
 	"email_id":"",
 	"password":"",
 }
 
-func _ready() -> void:
-	if Utils.selected_host.is_empty() == false:
-		var selected_club = Utils.selected_host.get_front()
-		get_host(selected_club)
+var selected_host:String = ""
 
+func _ready() -> void:
 	var club_names = json_loader.load_json_as_dict(CLUB_FILE)
 	for i in club_names.keys():
 		club_name.add_item(i)
+		
+	if Utils.selected_host.is_empty() == false:
+		selected_host = Utils.selected_host.get_front()
+		get_host(selected_host)
+
+	
 		
 func _on_back_pressed() -> void:
 	var HostsManager:PackedScene = load("res://src/Main/manage_hosts.tscn")
@@ -77,6 +82,7 @@ func _on_save_pressed() -> void:
 	for i:Node in fields:
 		data[field_map[i]] = i.text if Utils.has_property(i,"text") else i.get_item_text(i.selected)
 	
+	data["user_uid"] = selected_host if selected_host != "" else ""
 	create_host(data)
 	
 

@@ -4,7 +4,7 @@ const HOST_BUTTON = preload("res://src/UIComponents/HostButton.tscn")
 
 @onready var items: FlowContainer = $VBoxContainer/MarginContainer/ScrollContainer/Items
 
-var hosts:Array = []
+var hosts:Dictionary = {}
 
 func _ready() -> void:
 	get_all_hosts()
@@ -20,18 +20,18 @@ func get_all_hosts():
 	
 func _on_hosts_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	if response_code == 200:
-		var data:Array = JSON.parse_string(body.get_string_from_utf8())
+		var data:Dictionary = JSON.parse_string(body.get_string_from_utf8())
 		hosts = data
 		add_host_managers()
 	else:
 		push_error("request failed response code: ",response_code)
 
 func add_host_managers():
-	for i in hosts:
+	for i in hosts.keys():
 		var button = HOST_BUTTON.instantiate()
 		button.string_identifier = i
 		button.pressed.connect(self._on_host_button_pressed.bind(button.string_identifier))
-		button.Text = i
+		button.Text = hosts[i]
 		items.add_child(button)
 		
 

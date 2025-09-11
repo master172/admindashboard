@@ -88,19 +88,6 @@ text = "Club Name : "
 [node name="club_name" type="OptionButton" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/club_name/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-item_count = 6
-popup/item_0/text = "AICUF"
-popup/item_0/id = 0
-popup/item_1/text = "Art Club"
-popup/item_1/id = 1
-popup/item_2/text = "Music Club"
-popup/item_2/id = 2
-popup/item_3/text = "Dance Club"
-popup/item_3/id = 3
-popup/item_4/text = "Dramatics & Press Club"
-popup/item_4/id = 4
-popup/item_5/text = "Movie Club"
-popup/item_5/id = 5
 
 [node name="LoginId" type="PanelContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer"]
 layout_mode = 2
