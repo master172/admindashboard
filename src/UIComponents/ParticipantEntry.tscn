@@ -56,6 +56,27 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_28yk6")
 layout_mode = 2
 text = "Sumant"
 
+[node name="reg_number" type="HBoxContainer" parent="MarginContainer/Participants/VboxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Entry" type="PanelContainer" parent="MarginContainer/Participants/VboxContainer/reg_number"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_28yk6")
+
+[node name="Title" type="Label" parent="MarginContainer/Participants/VboxContainer/reg_number/Entry"]
+layout_mode = 2
+text = "Reg No:"
+
+[node name="Data" type="PanelContainer" parent="MarginContainer/Participants/VboxContainer/reg_number"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_28yk6")
+
+[node name="reg_label" type="Label" parent="MarginContainer/Participants/VboxContainer/reg_number/Data"]
+layout_mode = 2
+text = "Sumant"
+
 [node name="PhoneNo" type="HBoxContainer" parent="MarginContainer/Participants/VboxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3

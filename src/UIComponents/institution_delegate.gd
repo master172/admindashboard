@@ -29,10 +29,10 @@ func _load_data(data_map:Dictionary)->void:
 			var data_name:String = j.get("name", "")
 			var data_phone_no:String = j.get("phone_no", "")
 			var data_email:String = j.get("email_id", "")
-			
+			var data_reg_no:String = j.get("reg_no","")
 			var entry:Node = PARTICIPANT_ENTRY.instantiate()
 				
 			participant_container.add_child(entry)
-			entry._set_data(num,data_name,data_phone_no,data_email)
+			entry._set_data(num,data_name,data_phone_no,data_email,data_reg_no)
 		participant_container.add_child(HSeparator.new())
 		
