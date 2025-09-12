@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://r3jpxhgb5mmx"]
+[gd_scene load_steps=6 format=3 uid="uid://r3jpxhgb5mmx"]
 
 [ext_resource type="Theme" uid="uid://c8wib8exwpaas" path="res://Resources/MainTheme.tres" id="1_ddwfa"]
 [ext_resource type="Script" uid="uid://blf1tjb5tfab1" path="res://src/Main/create_host.gd" id="2_pyhpv"]
 [ext_resource type="Texture2D" uid="uid://3wbfrdbf88e6" path="res://assets/Icons/Back.svg" id="3_ureog"]
 [ext_resource type="Script" uid="uid://vlcg0jnerqik" path="res://src/Main/json_loader.gd" id="4_pyhpv"]
+[ext_resource type="Script" uid="uid://s3jj34y8e4lh" path="res://src/Main/update_password.gd" id="4_ureog"]
 
 [node name="CreateHost" type="Control"]
 layout_mode = 3
@@ -145,6 +146,35 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="UpdatePassword" type="PanelContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer"]
+visible = false
+layout_mode = 2
+script = ExtResource("4_ureog")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/UpdatePassword"]
+layout_mode = 2
+
+[node name="PasswordUpdateButton" type="Button" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/UpdatePassword/VBoxContainer"]
+layout_mode = 2
+text = "Update Password"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/UpdatePassword/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/UpdatePassword/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/UpdatePassword/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+text = "Password  : "
+horizontal_alignment = 1
+
+[node name="update_password" type="LineEdit" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/UpdatePassword/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
 [node name="Save" type="Button" parent="VBoxContainer/MarginContainer/ScrollContainer/FormContainer"]
 layout_mode = 2
 size_flags_vertical = 10
@@ -158,4 +188,6 @@ script = ExtResource("4_pyhpv")
 [connection signal="text_submitted" from="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/LoginId/MarginContainer/HBoxContainer/login_id" to="." method="_on_login_id_text_submitted"]
 [connection signal="text_submitted" from="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/EmailID/MarginContainer/HBoxContainer/email_id" to="." method="_on_email_id_text_submitted"]
 [connection signal="text_submitted" from="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/Password/MarginContainer/HBoxContainer/password" to="." method="_on_password_text_submitted"]
+[connection signal="pressed" from="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/UpdatePassword/VBoxContainer/PasswordUpdateButton" to="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/UpdatePassword" method="_on_password_update_button_pressed"]
+[connection signal="text_submitted" from="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/UpdatePassword/VBoxContainer/MarginContainer/HBoxContainer/update_password" to="." method="_on_password_text_submitted"]
 [connection signal="pressed" from="VBoxContainer/MarginContainer/ScrollContainer/FormContainer/Save" to="." method="_on_save_pressed"]

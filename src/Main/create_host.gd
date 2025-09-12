@@ -4,6 +4,8 @@ extends Control
 @onready var login_id: LineEdit = $VBoxContainer/MarginContainer/ScrollContainer/FormContainer/LoginId/MarginContainer/HBoxContainer/login_id
 @onready var email_id: LineEdit = $VBoxContainer/MarginContainer/ScrollContainer/FormContainer/EmailID/MarginContainer/HBoxContainer/email_id
 @onready var password: LineEdit = $VBoxContainer/MarginContainer/ScrollContainer/FormContainer/Password/MarginContainer/HBoxContainer/password
+@onready var update_password: LineEdit = $VBoxContainer/MarginContainer/ScrollContainer/FormContainer/UpdatePassword/VBoxContainer/MarginContainer/HBoxContainer/update_password
+@onready var update_password_panel: PanelContainer = $VBoxContainer/MarginContainer/ScrollContainer/FormContainer/UpdatePassword
 
 @onready var json_loader: Node = $JsonLoader
 const CLUB_FILE = "res://Resources/club_names.json"
@@ -31,6 +33,7 @@ var data:Dictionary = {
 }
 
 var selected_host:String = ""
+var editiing_host:bool = false
 
 func _ready() -> void:
 	var club_names = json_loader.load_json_as_dict(CLUB_FILE)
@@ -38,10 +41,15 @@ func _ready() -> void:
 		club_name.add_item(i)
 		
 	if Utils.selected_host.is_empty() == false:
+		update_password_panel.visible = true
 		selected_host = Utils.selected_host.get_front()
 		get_host(selected_host)
-
-	
+		editiing_host = true
+		password.visible = false
+	else:
+		update_password_panel.visible = false
+		editiing_host = false
+		password.visible = true
 		
 func _on_back_pressed() -> void:
 	var HostsManager:PackedScene = load("res://src/Main/manage_hosts.tscn")
@@ -79,12 +87,21 @@ func _on_password_text_submitted(new_text: String) -> void:
 
 
 func _on_save_pressed() -> void:
-	for i:Node in fields:
-		data[field_map[i]] = i.text if Utils.has_property(i,"text") else i.get_item_text(i.selected)
-	
-	data["user_uid"] = selected_host if selected_host != "" else ""
-	create_host(data)
-	
+	if editiing_host == false:
+		for i:Node in fields:
+			data[field_map[i]] = i.text if Utils.has_property(i,"text") else i.get_item_text(i.selected)
+		
+		data["user_uid"] = selected_host if selected_host != "" else ""
+		create_host(data)
+	else:
+		var data:Dictionary = {
+			"user_uid":selected_host,
+			"login_id":login_id.text,
+			"password":"" if update_password.text == "" else update_password.text,
+			"club_name":club_name.text,
+			"email_id":email_id.text,
+		}
+		create_host(data)
 
 
 func _on_club_name_item_selected(index: int) -> void:
@@ -97,7 +114,8 @@ func create_host(request_refrence:Dictionary):
 	http.request_completed.connect(http.queue_free.unbind(4))
 	var header = ["Content-Type: application/json"]
 	var body:String = JSON.stringify(request_refrence)
-	var err = http.request("http://127.0.0.1:8000/create",header,HTTPClient.METHOD_POST,body)
+	var url:String = "http://127.0.0.1:8000/create" if editiing_host == false else "http://127.0.0.1:8000/update_host"
+	var err = http.request(url,header,HTTPClient.METHOD_POST,body)
 	if err != OK:
 		push_error("http request error: ",err)
 	
