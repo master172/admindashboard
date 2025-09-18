@@ -27,7 +27,7 @@ func get_individual_registrations():
 	http.request_completed.connect(http.queue_free.unbind(4))
 	var club = selected_club.uri_encode()
 	var event = selected_event.uri_encode()
-	var url:String = "http://127.0.0.1:8000/registrations/individual/"+club+"/"+event
+	var url:String = Utils.default_backend_url+"registrations/individual/"+club+"/"+event
 	var err = http.request(url)
 	if err != OK:
 		push_error("http request error: ",err)
@@ -37,7 +37,10 @@ func induvidual_request_completed(result: int, response_code: int, headers: Pack
 		var data:Dictionary = JSON.parse_string(body.get_string_from_utf8())
 		add_individual_registration(data)
 	else:
-		push_error("request failed response code: ",response_code)
+		if response_code == 404:
+			OS.alert("No individual registrations found")
+		else:
+			push_error("request failed response code: ",response_code)
 
 func get_institution_registrations():
 	var http :HTTPRequest = HTTPRequest.new()
@@ -46,7 +49,7 @@ func get_institution_registrations():
 	http.request_completed.connect(http.queue_free.unbind(4))
 	var club = selected_club.uri_encode()
 	var event = selected_event.uri_encode()
-	var url:String = "http://127.0.0.1:8000/registrations/institution/"+club+"/"+event
+	var url:String = Utils.default_backend_url+"registrations/institution/"+club+"/"+event
 	var err = http.request(url)
 	if err != OK:
 		push_error("http request error: ",err)
@@ -56,7 +59,10 @@ func institution_request_completed(result: int, response_code: int, headers: Pac
 		var data:Dictionary = JSON.parse_string(body.get_string_from_utf8())
 		add_institution_registrations(data)
 	else:
-		push_error("request failed response code: ",response_code)
+		if response_code == 404:
+			OS.alert("No institution registrations found")
+		else:
+			push_error("request failed response code: ",response_code)
 
 func add_individual_registration(data:Dictionary)->void:
 	for i in data["registrations"]:

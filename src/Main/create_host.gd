@@ -114,7 +114,7 @@ func create_host(request_refrence:Dictionary):
 	http.request_completed.connect(http.queue_free.unbind(4))
 	var header = ["Content-Type: application/json"]
 	var body:String = JSON.stringify(request_refrence)
-	var url:String = "http://127.0.0.1:8000/create" if editiing_host == false else "http://127.0.0.1:8000/update_host"
+	var url:String = Utils.default_backend_url+"create" if editiing_host == false else Utils.default_backend_url+"update_host"
 	var err = http.request(url,header,HTTPClient.METHOD_POST,body)
 	if err != OK:
 		push_error("http request error: ",err)
@@ -132,7 +132,7 @@ func get_host(user_id:String):
 	http.request_completed.connect(http.queue_free.unbind(4))
 	var header = ["Content-Type: application/json"]
 	var body:String = JSON.stringify({"user_id":user_id})
-	var err = http.request("http://127.0.0.1:8000/host",header,HTTPClient.METHOD_GET,body)
+	var err = http.request(Utils.default_backend_url+"host",header,HTTPClient.METHOD_GET,body)
 	if err != OK:
 		push_error("http request error: ",err)
 	

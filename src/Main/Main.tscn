@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dgc3m4i4156v3"]
+[gd_scene load_steps=6 format=3 uid="uid://dgc3m4i4156v3"]
 
 [ext_resource type="Script" uid="uid://bjuexdydjvkta" path="res://src/Main/main.gd" id="1_52sh2"]
 [ext_resource type="Theme" uid="uid://c8wib8exwpaas" path="res://Resources/MainTheme.tres" id="1_f6j18"]
 [ext_resource type="Texture2D" uid="uid://cifcjhdrcx2d7" path="res://assets/Icons/List.svg" id="3_1pat6"]
 [ext_resource type="PackedScene" uid="uid://351f6j6go1i2" path="res://src/UIComponents/BaseButtonComponent.tscn" id="4_nxavr"]
+[ext_resource type="Texture2D" uid="uid://qr2ypeurqd3j" path="res://assets/Icons/download.svg" id="5_7cpwk"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -64,7 +65,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/h_separation = 48
 theme_override_constants/v_separation = 0
-columns = 2
+columns = 3
 
 [node name="ManageEvents" parent="MainContainer/OptionsContainer/GridContainer" instance=ExtResource("4_nxavr")]
 layout_mode = 2
@@ -75,5 +76,63 @@ layout_mode = 2
 Icon = ExtResource("3_1pat6")
 Text = "Registrations"
 
+[node name="DownloadButton" parent="MainContainer/OptionsContainer/GridContainer" instance=ExtResource("4_nxavr")]
+layout_mode = 2
+Icon = ExtResource("5_7cpwk")
+Text = "Download excel"
+
+[node name="Overlay" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101961, 0.101961, 0.101961, 0.384314)
+
+[node name="CenterContainer" type="CenterContainer" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoadingContainer" type="PanelContainer" parent="Overlay/CenterContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Overlay/CenterContainer/LoadingContainer"]
+custom_minimum_size = Vector2(450, 240)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Overlay/CenterContainer/LoadingContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="Label" type="Label" parent="Overlay/CenterContainer/LoadingContainer/Panel/MarginContainer"]
+layout_mode = 2
+text = "Now exporting and downloading registrations 
+data through the backend, please wait"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="pressed" from="MainContainer/OptionsContainer/GridContainer/ManageEvents" to="." method="_on_manage_events_pressed"]
 [connection signal="pressed" from="MainContainer/OptionsContainer/GridContainer/RegistrationsButton" to="." method="_on_registrations_button_pressed"]
+[connection signal="pressed" from="MainContainer/OptionsContainer/GridContainer/DownloadButton" to="." method="_on_download_button_pressed"]

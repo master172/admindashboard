@@ -14,7 +14,7 @@ func get_all_hosts():
 	add_child(http)
 	http.request_completed.connect(self._on_hosts_completed)
 	http.request_completed.connect(http.queue_free.unbind(4))
-	var err = http.request("http://127.0.0.1:8000/hosts")
+	var err = http.request(Utils.default_backend_url+"hosts")
 	if err != OK:
 		push_error("http request error: ",err)
 	

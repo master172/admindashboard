@@ -21,13 +21,14 @@ func get_all_clubs():
 	add_child(http)
 	http.request_completed.connect(self._on_club_completed)
 	http.request_completed.connect(http.queue_free.unbind(4))
-	var err = http.request("http://127.0.0.1:8000/clubs")
+	var err = http.request(Utils.default_backend_url+"clubs")
 	if err != OK:
 		push_error("http request error: ",err)
 	
 func _on_club_completed(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
 	if response_code == 200:
 		var data:Array = JSON.parse_string(body.get_string_from_utf8())
+		print(data)
 		if data != []:
 			add_club_buttons(data)
 	else:

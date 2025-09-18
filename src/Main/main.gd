@@ -1,5 +1,9 @@
 extends Control
+@onready var overlay: Control = $Overlay
 
+func _ready():
+	overlay.visible = false
+	
 func _on_manage_events_pressed() -> void:
 	var Manage_events_scene:PackedScene = load("res://src/Main/manage_hosts.tscn")
 	get_tree().change_scene_to_packed(Manage_events_scene)
@@ -17,7 +21,7 @@ func attemt_permission():
 	add_child(http)
 	http.request_completed.connect(self.permission_granted)
 	http.request_completed.connect(http.queue_free.unbind(4))
-	var err = http.request("http://127.0.0.1:8000/check_time")
+	var err = http.request(Utils.default_backend_url+"check_time")
 	if err != OK:
 		push_error("http request error: ",err)
 	
@@ -30,3 +34,28 @@ func permission_granted(result: int, response_code: int, headers: PackedStringAr
 			OS.alert("You do not have permission to view registrations yet")
 	else:
 		push_error("request failed response code: ",response_code)
+
+
+func _on_download_button_pressed() -> void:
+	var http :HTTPRequest = HTTPRequest.new()
+	add_child(http)
+	overlay.show()
+	http.request_completed.connect(self.download_exports)
+	http.request_completed.connect(http.queue_free.unbind(4))
+	var err = http.request(Utils.default_backend_url+"download")
+	if err != OK:
+		overlay.hide()
+		push_error("http request error: ",err)
+
+func download_exports(result: int, response_code: int, headers: PackedStringArray, body: PackedByteArray) -> void:
+	if response_code == 200:
+		var file = FileAccess.open("user://exported_registrations.zip",FileAccess.WRITE)
+		file.store_buffer(body)
+		file.close()
+		overlay.hide()
+		var dir := ProjectSettings.globalize_path("user://")
+		OS.shell_open(dir)
+	else:
+		overlay.hide()
+		var error_detail := body.get_string_from_utf8()
+		OS.alert("Failed to download export: " + error_detail, "Download Error")
