@@ -59,3 +59,8 @@ func download_exports(result: int, response_code: int, headers: PackedStringArra
 		overlay.hide()
 		var error_detail := body.get_string_from_utf8()
 		OS.alert("Failed to download export: " + error_detail, "Download Error")
+
+
+func _on_fees_button_pressed() -> void:
+	var fees_page:PackedScene = load("res://src/Main/fees_page.tscn")
+	get_tree().change_scene_to_packed(fees_page)

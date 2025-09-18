@@ -1,0 +1,180 @@
+[gd_scene load_steps=5 format=3 uid="uid://dumliuqdc8ag6"]
+
+[ext_resource type="Theme" uid="uid://c8wib8exwpaas" path="res://Resources/MainTheme.tres" id="1_3n0rm"]
+[ext_resource type="Script" uid="uid://bapa3eagjv8yo" path="res://src/Main/fees_page.gd" id="2_dkejs"]
+[ext_resource type="Texture2D" uid="uid://3wbfrdbf88e6" path="res://assets/Icons/Back.svg" id="3_yp8uc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3n0rm"]
+bg_color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[node name="FeesPage" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_3n0rm")
+script = ExtResource("2_dkejs")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15, 0.15, 0.15, 1)
+
+[node name="MainContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Header" type="Panel" parent="MainContainer"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/Header"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = -8.0
+offset_bottom = -6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Back" type="Button" parent="MainContainer/Header/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = " Back "
+icon = ExtResource("3_yp8uc")
+
+[node name="MarginContainer" type="MarginContainer" parent="MainContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="MainContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainContainer/MarginContainer/VBoxContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainContainer/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+text = "Registration uid :"
+
+[node name="UidEntry" type="LineEdit" parent="MainContainer/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "enter the registration uid here"
+
+[node name="Submit" type="Button" parent="MainContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "Get fees"
+
+[node name="Overlay" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101961, 0.101961, 0.101961, 0.0980392)
+
+[node name="CenterContainer" type="CenterContainer" parent="Overlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="Overlay/CenterContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3n0rm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Overlay/CenterContainer/PanelContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Panel" type="Panel" parent="Overlay/CenterContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(320, 32)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Overlay/CenterContainer/PanelContainer/VBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 1
+
+[node name="Label" type="Label" parent="Overlay/CenterContainer/PanelContainer/VBoxContainer/Panel/MarginContainer"]
+layout_mode = 2
+text = "Fetched data"
+horizontal_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="Overlay/CenterContainer/PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 216)
+layout_mode = 2
+color = Color(0.101961, 0.101961, 0.101961, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="Overlay/CenterContainer/PanelContainer/VBoxContainer/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Overlay/CenterContainer/PanelContainer/VBoxContainer/ColorRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="RichTextLabel" parent="Overlay/CenterContainer/PanelContainer/VBoxContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Ok" type="Button" parent="Overlay/CenterContainer/PanelContainer/VBoxContainer/ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Ok"
+
+[connection signal="pressed" from="MainContainer/Header/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="text_submitted" from="MainContainer/MarginContainer/VBoxContainer/PanelContainer/HBoxContainer/UidEntry" to="." method="_on_uid_entry_text_submitted"]
+[connection signal="pressed" from="MainContainer/MarginContainer/VBoxContainer/Submit" to="." method="_on_submit_pressed"]
+[connection signal="pressed" from="Overlay/CenterContainer/PanelContainer/VBoxContainer/ColorRect/MarginContainer/VBoxContainer/Ok" to="." method="_on_ok_pressed"]

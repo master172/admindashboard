@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://c8wib8exwpaas"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://c8wib8exwpaas"]
 
 [ext_resource type="FontFile" uid="uid://b6pbhvdgvsn2" path="res://assets/Fonts/Fira_Code/static/FiraCode-Regular.ttf" id="1_f5rfs"]
+[ext_resource type="FontFile" uid="uid://xdvbofo7itl" path="res://assets/Fonts/Fira_Code/static/FiraCode-Bold.ttf" id="2_bs5wg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f5rfs"]
 bg_color = Color(0.217, 0.25575, 0.31, 1)
@@ -94,6 +95,11 @@ LineEdit/constants/outline_size = 4
 LineEdit/fonts/font = ExtResource("1_f5rfs")
 Panel/styles/panel = SubResource("StyleBoxFlat_4swcv")
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_tohqo")
+RichTextLabel/colors/default_color = Color(1, 1, 1, 1)
+RichTextLabel/colors/font_outline_color = Color(0, 0, 0, 1)
+RichTextLabel/constants/outline_size = 2
+RichTextLabel/fonts/bold_font = ExtResource("2_bs5wg")
+RichTextLabel/fonts/normal_font = ExtResource("1_f5rfs")
 TextEdit/colors/font_placeholder_color = Color(0.88, 0.88, 0.88, 0.784314)
 TextEdit/constants/outline_size = 4
 TextEdit/fonts/font = ExtResource("1_f5rfs")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dgc3m4i4156v3"]
+[gd_scene load_steps=7 format=3 uid="uid://dgc3m4i4156v3"]
 
 [ext_resource type="Script" uid="uid://bjuexdydjvkta" path="res://src/Main/main.gd" id="1_52sh2"]
 [ext_resource type="Theme" uid="uid://c8wib8exwpaas" path="res://Resources/MainTheme.tres" id="1_f6j18"]
 [ext_resource type="Texture2D" uid="uid://cifcjhdrcx2d7" path="res://assets/Icons/List.svg" id="3_1pat6"]
 [ext_resource type="PackedScene" uid="uid://351f6j6go1i2" path="res://src/UIComponents/BaseButtonComponent.tscn" id="4_nxavr"]
 [ext_resource type="Texture2D" uid="uid://qr2ypeurqd3j" path="res://assets/Icons/download.svg" id="5_7cpwk"]
+[ext_resource type="Texture2D" uid="uid://d0jlpmm243jno" path="res://assets/Icons/fees.svg" id="5_52sh2"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -65,7 +66,7 @@ layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/h_separation = 48
 theme_override_constants/v_separation = 0
-columns = 3
+columns = 4
 
 [node name="ManageEvents" parent="MainContainer/OptionsContainer/GridContainer" instance=ExtResource("4_nxavr")]
 layout_mode = 2
@@ -75,6 +76,11 @@ Text = "Maage Hosts"
 layout_mode = 2
 Icon = ExtResource("3_1pat6")
 Text = "Registrations"
+
+[node name="FeesButton" parent="MainContainer/OptionsContainer/GridContainer" instance=ExtResource("4_nxavr")]
+layout_mode = 2
+Icon = ExtResource("5_52sh2")
+Text = "Get Fees"
 
 [node name="DownloadButton" parent="MainContainer/OptionsContainer/GridContainer" instance=ExtResource("4_nxavr")]
 layout_mode = 2
@@ -135,4 +141,5 @@ vertical_alignment = 1
 
 [connection signal="pressed" from="MainContainer/OptionsContainer/GridContainer/ManageEvents" to="." method="_on_manage_events_pressed"]
 [connection signal="pressed" from="MainContainer/OptionsContainer/GridContainer/RegistrationsButton" to="." method="_on_registrations_button_pressed"]
+[connection signal="pressed" from="MainContainer/OptionsContainer/GridContainer/FeesButton" to="." method="_on_fees_button_pressed"]
 [connection signal="pressed" from="MainContainer/OptionsContainer/GridContainer/DownloadButton" to="." method="_on_download_button_pressed"]
