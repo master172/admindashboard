@@ -69,6 +69,8 @@ func induvidual_request_completed(result: int, response_code: int, headers: Pack
 	else:
 		if response_code == 404:
 			OS.alert("No individual registrations found")
+			registrations_loaded += 1
+			_check_all_registrations_loaded()
 		else:
 			push_error("request failed response code: ",response_code)
 
@@ -91,6 +93,8 @@ func institution_request_completed(result: int, response_code: int, headers: Pac
 	else:
 		if response_code == 404:
 			OS.alert("No institution registrations found")
+			registrations_loaded += 1
+			_check_all_registrations_loaded()
 		else:
 			push_error("request failed response code: ",response_code)
 
@@ -144,7 +148,10 @@ func load_fetched_winners_data(result: int, response_code: int, headers: PackedS
 			data_to_save = data
 			parse_fetched_data(data)
 	else:
-		push_error("request failed response code: ",response_code)
+		if response_code == 404:
+			OS.alert("no winners found")
+		else:
+			push_error("request failed response code: ",response_code)
 
 
 func parse_fetched_data(data:Dictionary) -> void:
@@ -164,7 +171,7 @@ func parse_fetched_data(data:Dictionary) -> void:
 			var delegate:Node = INSTITUTION_DELEGATE.instantiate()
 			place_1_container.add_child(delegate)
 			delegate._load_data(INSTITUTION_REGISTRATIONS["registrations"][uid_institution_index[uid]])
-
+	
 	# Second Place
 	if data.has("second_place") and data["second_place"]["uid"] != "":
 		var uid = data["second_place"]["uid"]
