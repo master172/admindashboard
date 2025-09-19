@@ -18,14 +18,17 @@ var data_to_save:Dictionary = {
 	"first_place":{
 		"type":"",
 		"uid":"",
+		"team":"",
 	},
 	"second_place":{
 		"type":"",
 		"uid":"",
+		"team":"",
 	},
 	"third_place":{
 		"type":"",
 		"uid":"",
+		"team":"",
 	},
 }
 
@@ -156,13 +159,34 @@ func load_fetched_winners_data(result: int, response_code: int, headers: PackedS
 		else:
 			push_error("request failed response code: ",response_code)
 
+func _filter_delegate_to_team(delegate_data: Dictionary, team_index: int) -> Dictionary:
+	var filtered = delegate_data.duplicate(true)
+	if filtered.has("teams") and team_index >= 0 and team_index < filtered["teams"].size():
+		filtered["teams"] = [filtered["teams"][team_index]]
+	return filtered
 
+func set_institution_delegate_entry(container:PanelContainer,uid:String,index:int):
+	for i in container.get_children():
+		i.queue_free()
+		
+	var delegate:Node = INSTITUTION_DELEGATE.instantiate()
+	container.add_child(delegate)
+	var uid_index :int = uid_institution_index[uid]
+	var team_index = index
+	var regular_data :Dictionary= INSTITUTION_REGISTRATIONS["registrations"][uid_index]
+	
+	var data = _filter_delegate_to_team(regular_data,team_index)
+	delegate._load_data(data)
+	
 func parse_fetched_data(data:Dictionary) -> void:
 	# First Place
 	if data.has("first_place") and data["first_place"]["uid"] != "":
 		var uid = data["first_place"]["uid"]
 		var type = data["first_place"]["type"]
-
+		var index:int = 0
+		if data["first_place"].has("team"):
+			index = int(data["first_place"]["team"])
+			
 		for c in place_1_container.get_children():
 			c.queue_free()
 
@@ -171,15 +195,17 @@ func parse_fetched_data(data:Dictionary) -> void:
 			place_1_container.add_child(delegate)
 			delegate._load_data(INDIVIDUAL_REGISTRATIONS["registrations"][uid_individual_index[uid]])
 		elif type == "institution":
-			var delegate:Node = INSTITUTION_DELEGATE.instantiate()
-			place_1_container.add_child(delegate)
-			delegate._load_data(INSTITUTION_REGISTRATIONS["registrations"][uid_institution_index[uid]])
+			var teams:Array = INSTITUTION_REGISTRATIONS["registrations"][uid_institution_index[uid]]["teams"]
+			set_institution_delegate_entry(place_1_container,uid,index)
 	
 	# Second Place
 	if data.has("second_place") and data["second_place"]["uid"] != "":
 		var uid = data["second_place"]["uid"]
 		var type = data["second_place"]["type"]
-
+		var index:int = 0
+		if data["second_place"].has("team"):
+			index = int(data["second_place"]["team"])
+			
 		for c in place_2_container.get_children():
 			c.queue_free()
 
@@ -188,15 +214,17 @@ func parse_fetched_data(data:Dictionary) -> void:
 			place_2_container.add_child(delegate)
 			delegate._load_data(INDIVIDUAL_REGISTRATIONS["registrations"][uid_individual_index[uid]])
 		elif type == "institution":
-			var delegate:Node = INSTITUTION_DELEGATE.instantiate()
-			place_2_container.add_child(delegate)
-			delegate._load_data(INSTITUTION_REGISTRATIONS["registrations"][uid_institution_index[uid]])
+			var teams:Array = INSTITUTION_REGISTRATIONS["registrations"][uid_institution_index[uid]]["teams"]
+			set_institution_delegate_entry(place_2_container,uid,index)
 
 	# Third Place
 	if data.has("third_place") and data["third_place"]["uid"] != "":
 		var uid = data["third_place"]["uid"]
 		var type = data["third_place"]["type"]
-
+		var index:int = 0
+		if data["third_place"].has("team"):
+			index = int(data["third_place"]["team"])
+			
 		for c in place_3_container.get_children():
 			c.queue_free()
 
@@ -205,6 +233,5 @@ func parse_fetched_data(data:Dictionary) -> void:
 			place_3_container.add_child(delegate)
 			delegate._load_data(INDIVIDUAL_REGISTRATIONS["registrations"][uid_individual_index[uid]])
 		elif type == "institution":
-			var delegate:Node = INSTITUTION_DELEGATE.instantiate()
-			place_3_container.add_child(delegate)
-			delegate._load_data(INSTITUTION_REGISTRATIONS["registrations"][uid_institution_index[uid]])
+			var teams:Array = INSTITUTION_REGISTRATIONS["registrations"][uid_institution_index[uid]]["teams"]
+			set_institution_delegate_entry(place_3_container,uid,index)
