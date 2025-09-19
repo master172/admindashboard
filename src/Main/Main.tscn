@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dgc3m4i4156v3"]
+[gd_scene load_steps=8 format=3 uid="uid://dgc3m4i4156v3"]
 
 [ext_resource type="Script" uid="uid://bjuexdydjvkta" path="res://src/Main/main.gd" id="1_52sh2"]
 [ext_resource type="Theme" uid="uid://c8wib8exwpaas" path="res://Resources/MainTheme.tres" id="1_f6j18"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://351f6j6go1i2" path="res://src/UIComponents/BaseButtonComponent.tscn" id="4_nxavr"]
 [ext_resource type="Texture2D" uid="uid://qr2ypeurqd3j" path="res://assets/Icons/download.svg" id="5_7cpwk"]
 [ext_resource type="Texture2D" uid="uid://d0jlpmm243jno" path="res://assets/Icons/fees.svg" id="5_52sh2"]
+[ext_resource type="Texture2D" uid="uid://dbhyq24ijfxqy" path="res://assets/Icons/winner.svg" id="7_nxavr"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -65,7 +66,7 @@ theme_override_constants/margin_bottom = 24
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/h_separation = 48
-theme_override_constants/v_separation = 0
+theme_override_constants/v_separation = 48
 columns = 4
 
 [node name="ManageEvents" parent="MainContainer/OptionsContainer/GridContainer" instance=ExtResource("4_nxavr")]
@@ -86,6 +87,11 @@ Text = "Get Fees"
 layout_mode = 2
 Icon = ExtResource("5_7cpwk")
 Text = "Download excel"
+
+[node name="Winners" parent="MainContainer/OptionsContainer/GridContainer" instance=ExtResource("4_nxavr")]
+layout_mode = 2
+Icon = ExtResource("7_nxavr")
+Text = "Winners"
 
 [node name="Overlay" type="Control" parent="."]
 visible = false
@@ -143,3 +149,4 @@ vertical_alignment = 1
 [connection signal="pressed" from="MainContainer/OptionsContainer/GridContainer/RegistrationsButton" to="." method="_on_registrations_button_pressed"]
 [connection signal="pressed" from="MainContainer/OptionsContainer/GridContainer/FeesButton" to="." method="_on_fees_button_pressed"]
 [connection signal="pressed" from="MainContainer/OptionsContainer/GridContainer/DownloadButton" to="." method="_on_download_button_pressed"]
+[connection signal="pressed" from="MainContainer/OptionsContainer/GridContainer/Winners" to="." method="_on_winners_pressed"]

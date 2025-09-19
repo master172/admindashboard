@@ -13,7 +13,7 @@ func _on_back_pressed() -> void:
 
 func _on_registration_button_pressed(club:String) -> void:
 	Utils.selected_club.enqueue(club)
-	var manage_events:PackedScene = load("res://src/Main/manage_events.tscn")
+	var manage_events:PackedScene = load("res://src/Main/winners_event_selector.tscn")
 	get_tree().change_scene_to_packed(manage_events)
 
 func get_all_clubs():

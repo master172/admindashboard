@@ -64,3 +64,8 @@ func download_exports(result: int, response_code: int, headers: PackedStringArra
 func _on_fees_button_pressed() -> void:
 	var fees_page:PackedScene = load("res://src/Main/fees_page.tscn")
 	get_tree().change_scene_to_packed(fees_page)
+
+
+func _on_winners_pressed() -> void:
+	var Glue1 :PackedScene= load("res://src/Main/winners_club_selector.tscn")
+	get_tree().change_scene_to_packed(Glue1)
