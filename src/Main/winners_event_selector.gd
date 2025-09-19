@@ -42,11 +42,12 @@ func add_event_buttons(button_entries:Dictionary)->void:
 	for i in button_entries.keys():
 		var button:Node = EVENT_BUTTON_COMPONENT.instantiate()
 		button.string_identifier = i
-		button.pressed.connect(self.on_event_button_pressed.bind(button_entries[i],selected_club))
+		button.pressed.connect(self.on_event_button_pressed.bind(i,button_entries[i],selected_club))
 		button.Text = button_entries[i]
 		items.add_child(button)
 
-func on_event_button_pressed(event_id:String,club_id:String)->void:
-	Utils.selected_event.enqueue(event_id)
+func on_event_button_pressed(event_id:String,event_name:String,club_id:String)->void:
+	Utils.event_id.enqueue(event_id)
+	Utils.selected_event.enqueue(event_name)
 	Utils.selected_club.enqueue(club_id)
 	_on_event_button_pressed()

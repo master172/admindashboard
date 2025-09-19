@@ -4,6 +4,7 @@ var register_form:Queue = Queue.new()
 var selected_event:Queue = Queue.new()
 var selected_club:Queue = Queue.new()
 var selected_host:Queue = Queue.new()
+var event_id:Queue = Queue.new()
 
 const default_backend_url:String = "http://127.0.0.1:8000/"
 

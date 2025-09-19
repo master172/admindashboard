@@ -2,6 +2,7 @@ extends Control
 
 var selected_event:String = ""
 var selected_club:String = ""
+var event_id:String = ""
 
 var INDIVIDUAL_REGISTRATIONS:Dictionary = {}
 var INSTITUTION_REGISTRATIONS:Dictionary = {}
@@ -38,6 +39,8 @@ var registrations_loaded:int = 0
 func _ready() -> void:
 	if Utils.selected_event.size() != 0:
 		selected_event = Utils.selected_event.get_front()
+	if Utils.event_id.size() != 0:
+		event_id = Utils.event_id.get_front()
 	if Utils.selected_club.size() != 0:
 		selected_club = Utils.selected_club.get_front()
 		
@@ -135,7 +138,7 @@ func get_winners()->void:
 	http.request_completed.connect(self.load_fetched_winners_data)
 	http.request_completed.connect(http.queue_free.unbind(4))
 	var club = selected_club.uri_encode()
-	var event = selected_event.uri_encode()
+	var event = event_id.uri_encode()
 	var url :String= Utils.default_backend_url+"get_winners/"+club+"/"+event
 	var err = http.request(url)
 	if err != OK:
