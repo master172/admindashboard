@@ -62,12 +62,11 @@ theme_override_constants/margin_top = 24
 theme_override_constants/margin_right = 24
 theme_override_constants/margin_bottom = 24
 
-[node name="GridContainer" type="GridContainer" parent="MainContainer/OptionsContainer"]
+[node name="GridContainer" type="FlowContainer" parent="MainContainer/OptionsContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/h_separation = 48
 theme_override_constants/v_separation = 48
-columns = 4
 
 [node name="ManageEvents" parent="MainContainer/OptionsContainer/GridContainer" instance=ExtResource("4_nxavr")]
 layout_mode = 2

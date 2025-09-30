@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="AdminDashboard"
+config/name="Overseer"
 run/main_scene="uid://dgc3m4i4156v3"
 config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://icon.svg"
+config/icon="uid://cfjym8achav1l"
 
 [autoload]
 
