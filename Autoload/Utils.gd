@@ -6,7 +6,7 @@ var selected_club:Queue = Queue.new()
 var selected_host:Queue = Queue.new()
 var event_id:Queue = Queue.new()
 
-const default_backend_url:String = "http://127.0.0.1:8000/"
+const default_backend_url:String = "https://equinoxbackend-96ub.onrender.com/"
 
 func is_valid_email_id(email:String)->bool:
 	var regex := RegEx.new()
