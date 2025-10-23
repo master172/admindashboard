@@ -42,7 +42,7 @@ func _on_download_button_pressed() -> void:
 	overlay.show()
 	http.request_completed.connect(self.download_exports)
 	http.request_completed.connect(http.queue_free.unbind(4))
-	var err = http.request(Utils.default_backend_url+"download")
+	var err = http.request(Utils.default_backend_url+"18ebefdc-da09-41c5-ac83-165cd26b4e43/download")
 	if err != OK:
 		overlay.hide()
 		push_error("http request error: ",err)
